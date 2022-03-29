@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     searched () {
-      if (this.searchedFor !== '') {
+      if (this.textSearchFor !== '') {
         console.log(this.textSearchFor)
         axios.get(`https://api.themoviedb.org/3/search/movie?api_key=01af620fbe2924c05e6048caa6f5c225&query=${this.textSearchFor}`)
           .then((res) => console.log(res.data.results))
