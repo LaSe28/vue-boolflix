@@ -1,19 +1,21 @@
 <template>
   <div id="app">
     <HeaderBool @search="searchTitle"/>
-    <MainBool :textSearchFor="searchValue"/>
+    <MainBool :textSearchFor="arrSearch"/>
   </div>
 </template>
 
 <script>
 import HeaderBool from './components/HeaderBoolflix.vue'
 import MainBool from './components/MainBoolflix.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
   data () {
     return {
-      searchValue: ''
+      searchValue: '',
+      arrSearch: []
     }
   },
   components: {
@@ -22,7 +24,23 @@ export default {
   },
   methods: {
     searchTitle (searchValue) {
+      this.arrSearch = []
       this.searchValue = searchValue
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=01af620fbe2924c05e6048caa6f5c225&language=it_IT&query=${this.searchValue}`)
+        .then((res) => {
+          for (let i = 0; i < res.data.results.length; i++) {
+            this.arrSearch.push({
+              title: res.data.results[i].title,
+              overview: res.data.results[i].overview,
+              poster_path: res.data.results[i].poster_path,
+              original_title: res.data.results[i].original_title,
+              original_language: res.data.results[i].original_language,
+              vote_average: res.data.results[i].vote_average
+            })
+          }
+          console.log(this.arrSearch)
+          return this.arrSearch
+        })
     }
   }
 }
