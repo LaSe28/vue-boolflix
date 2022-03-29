@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HeaderBool @search="searchTitle"/>
+    <MainBool :textSearchFor="searchValue"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HeaderBool from './components/HeaderBoolflix.vue'
+import MainBool from './components/MainBoolflix.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
+  data () {
+    return {
+      searchValue: ''
+    }
+  },
   components: {
-    HelloWorld
+    HeaderBool,
+    MainBool
+  },
+  methods: {
+    searchTitle (searchValue) {
+      this.searchValue = searchValue
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=01af620fbe2924c05e6048caa6f5c225&query=${this.searchValue}`)
+        .then((res) => console.log(res.data.results))
+    }
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
