@@ -1,31 +1,40 @@
 <template>
-  <main>
-    <div class="container">
-      <div class="card" v-for="film in arraySearchFilm" :style=" 'background: url(\'http://image.tmdb.org/t/p/w200/' + film.poster_path + '\');'" :key="film.id">
-        <div class="background">
-          <div class="card-text">
-            <div>Titolo: {{film.title}}</div>
-            <div>Titolo originale: {{film.original_title}}</div>
-            <lang-flag :iso="film.original_language"/>
-            <div>Voto: {{film.vote_average}}</div>
-          </div>
-        </div>
+<main>
+<div v-if="arraySearchFilm.length !== 0" class="type">Film ({{arraySearchFilm.length}})</div>
+<div class="container">
+  <div class="flip-card" v-for="film in arraySearchFilm"  :key="film.id">
+    <div class="in-card">
+      <div class="default" v-if="film.poster_path === null">
+        <img src="../assets/img/no-image.png" alt="">
+      </div>
+      <div v-else class="front-card" :style=" 'background: url(\'http://image.tmdb.org/t/p/w342/' + film.poster_path + '\');'"></div>
+      <div class="back-card">
+        <h3>Titolo: {{film.title}}</h3>
+        <h4>Titolo originale: {{film.original_title}}</h4>
+        <span><i v-for="star in Math.trunc(film.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
+        <lang-flag :iso="film.original_language"/>
       </div>
     </div>
-    <div class="series"> Serie TV</div>
-    <div class="container">
-      <div class="card" v-for="sit in arraySearchTv" :style=" 'background: url(\'http://image.tmdb.org/t/p/w200/' + sit.poster_path + '\');'" :key="sit.id">
-      <div class="background">
-        <div class="card-text">
-          <div>nome: {{sit.title}}</div>
-          <div>Titolo originale: {{sit.original_title}}</div>
-          <lang-flag :iso="sit.original_language" />
-          <div>Voto: {{sit.vote_average}}</div>
-        </div>
+  </div>
+</div>
+<div v-if="arraySearchTv.length !== 0" class="type">Film ({{arraySearchTv.length}})</div>
+<div class="container">
+  <div class="flip-card" v-for="sit in arraySearchTv"  :key="sit.id">
+    <div class="in-card">
+      <div class="default" v-if="sit.poster_path === null">
+        <img src="../assets/img/no-image.png" alt="">
       </div>
+      <div v-else class="front-card" :style=" 'background: url(\'http://image.tmdb.org/t/p/w342/' + sit.poster_path + '\');'"></div>
+      <div class="back-card">
+        <h3>Titolo: {{sit.title}}</h3>
+        <h4>Titolo originale: {{sit.original_title}}</h4>
+        <span><i v-for="star in Math.trunc(sit.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
+        <lang-flag :iso="sit.original_language"/>
       </div>
     </div>
-  </main>
+  </div>
+</div>
+</main>
 </template>
 
 <script>
@@ -38,12 +47,13 @@ export default {
   },
   data () {
     return {
-
     }
   },
   props: {
     arraySearchFilm: Array,
     arraySearchTv: Array
+  },
+  methods: {
   }
 }
 </script>
@@ -52,36 +62,81 @@ export default {
 .container{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
-.hidden{
-  display: none;
+.flip-card {
+  background-color: transparent;
+  width: 342px;
+  height: 500px;
+  perspective: 1000px;
+  margin: 1rem;
+  border:2px solid white ;
+  border-radius: .5rem;
+  overflow: hidden;
+  }
+
+.in-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
 }
-.series{
+
+.flip-card:hover .in-card {
+  transform: rotateY(180deg);
+}
+
+.default{
+  text-align: center;
+  height: 130%;
+  background-color: #F8F8F9;
+  img{
+    width: 80%;
+  }
+}
+
+.flip-card:hover .default{
+ display: none;
+}
+
+.front-card, .back-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.front-card {
+  color: black;
+}
+
+.back-card {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  transform: rotateY(180deg);
+  background-color: black;
+  h3{
+    margin: 1rem;
+    font-size: 2rem;
+  }
+  h4{
+    margin: 1rem;
+  }
+}
+.type{
   color: white;
   font-size: 2rem;
-}
-.card{
-  position: relative;
-  height: 300px;
-  width: 200px;
   margin: 2rem;
-  border-radius: .5rem;
-  overflow: auto;
-  color: white;
-  border: 2px solid white;
-  .card-text{
-    height: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-  .background{
-    position: absolute;
-    top: 0;
-    z-index: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba($color: #000000, $alpha: 0.4);
-  }
+}
+span{
+  margin: 1rem;
+}
+.fa-solid{
+  font-size: 2rem;
+  display: inline-block;
+  color: yellow;
 }
 </style>
