@@ -1,7 +1,10 @@
 <template>
   <header>
-    <input v-model="searchText" type="text">
-    <button @click="searchFor">Cerca</button>
+    <h1>boolflix</h1>
+    <div>
+      <input v-model="searchText" type="text">
+      <button @click="searchFor">Cerca</button>
+    </div>
   </header>
 </template>
 
@@ -25,6 +28,23 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  background-color: black;
+  h1{
+    text-transform: uppercase;
+    color: red;
+    margin: 1rem;
+  }
+  input{
+    height: 1.5rem;
+  }
+  button{
+    margin: 1rem;
+  }
+}
 </style>

@@ -31,6 +31,7 @@ export default {
       if (this.searchValue !== '') {
         axios.get(`https://api.themoviedb.org/3/search/movie?api_key=01af620fbe2924c05e6048caa6f5c225&language=it_IT&query=${this.searchValue}`)
           .then((res) => {
+            console.log(res)
             for (let i = 0; i < res.data.results.length; i++) {
               this.arrSearchFilm.push({
                 title: res.data.results[i].title,
@@ -44,7 +45,6 @@ export default {
           })
         axios.get(`https://api.themoviedb.org/3/search/tv?api_key=01af620fbe2924c05e6048caa6f5c225&language=it_IT&query=${this.searchValue}`)
           .then((res) => {
-            console.log(res)
             for (let i = 0; i < res.data.results.length; i++) {
               this.arrSearchTv.push({
                 title: res.data.results[i].name,
@@ -63,5 +63,6 @@ export default {
 </script>
 
 <style lang="scss">
+@import './assets/styles/style.scss'
 
 </style>
