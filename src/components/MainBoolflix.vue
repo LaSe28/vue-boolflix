@@ -6,6 +6,7 @@
     <div class="in-card">
       <div class="default" v-if="film.poster_path === null">
         <img src="../assets/img/not-available.png" alt="">
+        {{film.title}}
       </div>
       <div v-else class="front-card" :style=" 'background: url(\'http://image.tmdb.org/t/p/w342/' + film.poster_path + '\');'"></div>
       <div class="back-card">
@@ -23,6 +24,7 @@
     <div class="in-card">
       <div class="default" v-if="sit.poster_path === null">
         <img src="../assets/img/not-available.png" alt="">
+        {{sit.title}}
       </div>
       <div v-else class="front-card" :style=" 'background: url(\'http://image.tmdb.org/t/p/w342/' + sit.poster_path + '\');'"></div>
       <div class="back-card">
