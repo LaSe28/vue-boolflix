@@ -2,7 +2,7 @@
   <header>
     <h1>boolflix</h1>
     <div>
-      <input v-model="searchText" type="text">
+      <input @keydown.enter="searchFor" v-model="searchText" type="text">
       <button @click="searchFor">Cerca</button>
     </div>
   </header>

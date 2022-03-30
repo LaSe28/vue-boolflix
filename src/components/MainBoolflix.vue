@@ -5,13 +5,13 @@
   <div class="flip-card" v-for="film in arraySearchFilm"  :key="film.id">
     <div class="in-card">
       <div class="default" v-if="film.poster_path === null">
-        <img src="../assets/img/no-image.png" alt="">
+        <img src="../assets/img/not-available.png" alt="">
       </div>
       <div v-else class="front-card" :style=" 'background: url(\'http://image.tmdb.org/t/p/w342/' + film.poster_path + '\');'"></div>
       <div class="back-card">
         <h3>Titolo: {{film.title}}</h3>
         <h4>Titolo originale: {{film.original_title}}</h4>
-        <span><i v-for="star in Math.ceil(film.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
+        <span><i v-for="star in Math.trunc(film.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
         <lang-flag :iso="film.original_language"/>
       </div>
     </div>
@@ -22,13 +22,13 @@
   <div class="flip-card" v-for="sit in arraySearchTv"  :key="sit.id">
     <div class="in-card">
       <div class="default" v-if="sit.poster_path === null">
-        <img src="../assets/img/no-image.png" alt="">
+        <img src="../assets/img/not-available.png" alt="">
       </div>
       <div v-else class="front-card" :style=" 'background: url(\'http://image.tmdb.org/t/p/w342/' + sit.poster_path + '\');'"></div>
       <div class="back-card">
         <h3>Titolo: {{sit.title}}</h3>
         <h4>Titolo originale: {{sit.original_title}}</h4>
-        <span><i v-for="star in Math.ceil(sit.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
+        <span><i v-for="star in Math.trunc(sit.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
         <lang-flag :iso="sit.original_language"/>
       </div>
     </div>
@@ -93,7 +93,7 @@ export default {
   height: 100%;
   background-color: #F8F8F9;
   img{
-    width: 80%;
+    width: 100%;
   }
 }
 
