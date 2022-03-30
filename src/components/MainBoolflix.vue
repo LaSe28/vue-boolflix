@@ -29,7 +29,7 @@
         <h3>Titolo: {{sit.title}}</h3>
         <h4>Titolo originale: {{sit.original_title}}</h4>
         <span><i v-for="star in Math.trunc(sit.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
-        <lang-flag :iso="sit.original_language"/>
+        <lang-flag class="flag" :iso="sit.original_language"/>
       </div>
     </div>
   </div>
@@ -73,8 +73,7 @@ export default {
   border:2px solid white ;
   border-radius: .5rem;
   overflow: hidden;
-  }
-
+}
 .in-card {
   position: relative;
   width: 100%;
@@ -82,11 +81,9 @@ export default {
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
-
 .flip-card:hover .in-card {
   transform: rotateY(180deg);
 }
-
 .default{
   position: absolute;
   text-align: center;
@@ -96,7 +93,6 @@ export default {
     width: 100%;
   }
 }
-
 .front-card, .back-card {
   position: absolute;
   width: 100%;
@@ -104,11 +100,6 @@ export default {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-
-.front-card {
-  color: black;
-}
-
 .back-card {
   display: flex;
   flex-direction: column;
