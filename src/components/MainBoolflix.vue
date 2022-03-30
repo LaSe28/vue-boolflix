@@ -18,7 +18,7 @@
     </div>
   </div>
 </div>
-<div v-if="arraySearchTv.length !== 0" class="type">Film ({{arraySearchTv.length}})</div>
+<div v-if="arraySearchTv.length !== 0" class="type">Serie TV ({{arraySearchTv.length}})</div>
 <div class="container">
   <div class="flip-card" v-for="sit in arraySearchTv"  :key="sit.id">
     <div class="in-card">
