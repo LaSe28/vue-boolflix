@@ -11,7 +11,7 @@
       <div class="back-card">
         <h3>Titolo: {{film.title}}</h3>
         <h4>Titolo originale: {{film.original_title}}</h4>
-        <span><i v-for="star in Math.trunc(film.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
+        <span><i v-for="star in Math.ceil(film.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
         <lang-flag :iso="film.original_language"/>
       </div>
     </div>
@@ -28,7 +28,7 @@
       <div class="back-card">
         <h3>Titolo: {{sit.title}}</h3>
         <h4>Titolo originale: {{sit.original_title}}</h4>
-        <span><i v-for="star in Math.trunc(sit.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
+        <span><i v-for="star in Math.ceil(sit.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
         <lang-flag :iso="sit.original_language"/>
       </div>
     </div>
@@ -88,16 +88,13 @@ export default {
 }
 
 .default{
+  position: absolute;
   text-align: center;
-  height: 130%;
+  height: 100%;
   background-color: #F8F8F9;
   img{
     width: 80%;
   }
-}
-
-.flip-card:hover .default{
- display: none;
 }
 
 .front-card, .back-card {
@@ -123,7 +120,8 @@ export default {
     font-size: 2rem;
   }
   h4{
-    margin: 1rem;
+    margin: 2rem 1rem;
+    font-size: 1.5rem;
   }
 }
 .type{
