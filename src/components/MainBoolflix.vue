@@ -12,8 +12,7 @@
         </div>
       </div>
     </div>
-    <div class="series" v-if="arraySearchTv === '' ">Non ci sono serie TV</div>
-    <div class="series" v-else> Serie TV</div>
+    <div class="series"> Serie TV</div>
     <div class="container">
       <div class="card" v-for="sit in arraySearchTv" :style=" 'background: url(\'http://image.tmdb.org/t/p/w200/' + sit.poster_path + '\');'" :key="sit.id">
       <div class="background">
