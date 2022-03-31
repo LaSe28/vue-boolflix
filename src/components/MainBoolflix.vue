@@ -89,6 +89,8 @@ export default {
   text-align: center;
   height: 100%;
   background-color: #F8F8F9;
+  border-radius: .5rem;
+  border: 2px solid black;
   img{
     width: 100%;
   }
