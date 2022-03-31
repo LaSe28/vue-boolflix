@@ -12,7 +12,7 @@
       <div class="back-card">
         <h3>Titolo: {{film.title}}</h3>
         <h4>Titolo originale: {{film.original_title}}</h4>
-        <span><i v-for="star in Math.trunc(film.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
+        <span><i v-for="star in Math.ceil(film.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
         <lang-flag :iso="film.original_language" :squared="false"/>
       </div>
     </div>
@@ -30,7 +30,7 @@
       <div class="back-card">
         <h3>Titolo: {{sit.title}}</h3>
         <h4>Titolo originale: {{sit.original_title}}</h4>
-        <span><i v-for="star in Math.trunc(sit.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
+        <span><i v-for="star in Math.ceil(sit.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
         <lang-flag class="flag" :iso="sit.original_language" :squared="false"/>
       </div>
     </div>
