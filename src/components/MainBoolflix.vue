@@ -12,7 +12,7 @@
       <div class="back-card">
         <h3>Titolo: {{film.title}}</h3>
         <h4>Titolo originale: {{film.original_title}}</h4>
-        <span><i v-for="star in Math.ceil(film.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
+        <span><i v-for="star in Math.ceil(film.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i><i v-for="star in 5 - Math.ceil(film.vote_average / 2)" :key="star.index" class="fa-regular fa-star"></i></span>
         <lang-flag :iso="film.original_language" :squared="false"/>
       </div>
     </div>
@@ -30,7 +30,7 @@
       <div class="back-card">
         <h3>Titolo: {{sit.title}}</h3>
         <h4>Titolo originale: {{sit.original_title}}</h4>
-        <span><i v-for="star in Math.ceil(sit.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i></span>
+        <span><i v-for="star in Math.ceil(sit.vote_average / 2)" :key="star.index" class="fa-solid fa-star"></i><i v-for="star in 5 - Math.ceil(sit.vote_average / 2)" :key="star.index" class="fa-regular fa-star"></i></span>
         <lang-flag class="flag" :iso="sit.original_language" :squared="false"/>
       </div>
     </div>
@@ -72,9 +72,7 @@ export default {
   height: 500px;
   perspective: 1000px;
   margin: 1rem;
-  border:2px solid white ;
   border-radius: .5rem;
-  overflow: hidden;
 }
 .in-card {
   position: relative;
@@ -101,6 +99,7 @@ export default {
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  border-radius: .5rem;
 }
 .back-card {
   display: flex;
@@ -125,7 +124,7 @@ export default {
 span{
   margin: 1rem;
 }
-.fa-solid{
+.fa-star{
   font-size: 2rem;
   display: inline-block;
   color: yellow;
